@@ -3,10 +3,15 @@
 #include <fstream>
 #include <sstream>
 #include "Parser.h"
+#include "Person.cpp" 
 
 using namespace std;
 
 const int VALID_TAGS_SIZE = 17;
+
+int person_counter = 0;
+Person* list_of_people = new Person[5000]; 
+
 
 string valid_tags[VALID_TAGS_SIZE] =
 { "INDI", "NAME", "SEX", "BIRT", "DEAT", "FAMC", 
@@ -65,6 +70,15 @@ string getTag(string const & gedcomLine)
 		Tag = "Invalid Tag";
 	}
 
+	if (Tag == "NAME")
+	{
+		cout << "Got a name over here!" << endl; 
+		person_counter++; 
+		list_of_people[person_counter].Person_Name = gedcomLine; 
+		list_of_people[person_counter].ID_Number = person_counter; 
+		list_of_people[person_counter].testPerson(); 
+	}
+
 	return Tag;
 }
 
@@ -105,4 +119,17 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 	ifile.close();
 	ofile.close();
 
+}
+
+int getPersonCounter()
+{
+	return person_counter; 
+}
+
+void printPeople()
+{
+	for (int x = 0; x < person_counter; x++)
+	{
+		list_of_people[x].printInformation(); 
+	}
 }
