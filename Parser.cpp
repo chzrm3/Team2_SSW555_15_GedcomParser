@@ -40,6 +40,24 @@ string getLevel(string const & gedcomLine)
 	return Level;
 }
 
+string getUniqueID(string const & gedcomLine)
+{
+	string UniqueID = "";
+
+	size_t first = gedcomLine.find(" ");
+	if (first != std::string::npos)
+	{
+		size_t second = gedcomLine.find(" ", first + 1);
+		if (second != std::string::npos)
+		{
+			UniqueID = gedcomLine.substr(first + 1, second - 2);
+		}
+		UniqueID = gedcomLine.substr(first, second);
+	}
+
+	return UniqueID;
+}
+
 string getTag(string const & gedcomLine)
 {
 	string Tag = "";
@@ -70,15 +88,6 @@ string getTag(string const & gedcomLine)
 		Tag = "Invalid Tag";
 	}
 
-	if (Tag == "NAME")
-	{
-		cout << "Got a name over here!" << endl; 
-		person_counter++; 
-		list_of_people[person_counter].Person_Name = gedcomLine; 
-		list_of_people[person_counter].ID_Number = person_counter; 
-		list_of_people[person_counter].testPerson(); 
-	}
-
 	return Tag;
 }
 
@@ -99,26 +108,49 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 	string level = "";
 	string tag = "";
 
+	bool buildPerson = false;
 	while (!ifile.eof())
 	{
 		getline(ifile, sLine);
+
 		if (sLine != "")
 		{
 			//Get level
 			level = getLevel(sLine);
 			//Get tag
 			tag = getTag(sLine);
+			if (buildPerson)
+			{
+				if (tag == "NAME")
+				{
+					list_of_people[person_counter].Person_Name = sLine;
+					list_of_people[person_counter].testPerson();
+				}
+				else
+				{
+					buildPerson = false;
+				}
+			}
+			else
+			{
+				if (tag == "INDI")
+				{
+					cout << "Got a person over here!" << endl;
+					person_counter++;
+					buildPerson = true;
+					list_of_people[person_counter].Person_UID = getUniqueID(sLine);
+				}
+			}
 			//See if tag is valid
-			printAndWrite("Line: " + sLine, ofile);
-			printAndWrite("Level: " + level, ofile);
-			printAndWrite("Tag: " + tag, ofile);
-			printAndWrite("", ofile);
+			//printAndWrite("Line: " + sLine, ofile);
+			//printAndWrite("Level: " + level, ofile);
+			//printAndWrite("Tag: " + tag, ofile);
+			//printAndWrite("", ofile);
 		}
 	}
 
 	ifile.close();
 	ofile.close();
-
 }
 
 int getPersonCounter()

@@ -21,8 +21,9 @@ int main()
 	cout << "Enter the GEDCOM file to parse:\n>";
 	getline(cin, gedcomFile);
 
-	gedcomFile = "C:\\Users\\Chzrm\\Desktop\\My-Family-13-Sep-2015.ged";
-	string outputFile = "C:\\Users\\Laura\\Documents\\Stevens\\SSW555\\Week 2\\PickensP02Output.txt";
+	//gedcomFile = "C:\\Users\\Chzrm\\Desktop\\My-Family-13-Sep-2015.ged";
+	gedcomFile = "C:\\Users\\Laura\\Documents\\Stevens\\SSW555\\Week 1\\PickensSSW555P01.ged";
+	string outputFile = "C:\\Users\\Laura\\Documents\\Stevens\\SSW555\\Week 3\\Team2P03Output.txt";
 	
 	bool filePassed = false;
 	int person_count = 0; 
