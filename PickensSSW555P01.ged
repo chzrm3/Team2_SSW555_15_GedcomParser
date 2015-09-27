@@ -1,0 +1,227 @@
+0 NOTE Laura Pickens
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE My Family
+1 DATE 13 SEP 2015
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME Me
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Morticia /Frump/
+2 GIVN Morticia
+2 SURN Frump
+2 _MARNM Addams
+1 SEX F
+1 BIRT
+2 DATE 7 APR 1965
+1 FAMS @F1@
+1 FAMC @F2@
+0 @I2@ INDI
+1 NAME Gomez /Addams/
+2 GIVN Gomez
+2 SURN Addams
+2 _MARNM Addams
+1 SEX M
+1 BIRT
+2 DATE 27 JAN 1959
+1 FAMS @F1@
+1 FAMS @F3@
+1 FAMC @F4@
+0 @I3@ INDI
+1 NAME Wednesday /Addams/
+2 GIVN Wednesday
+2 SURN Addams
+2 _MARNM Addams
+1 SEX F
+1 BIRT
+2 DATE 25 SEP 1986
+1 FAMC @F1@
+0 @I4@ INDI
+1 NAME Pugsley /Addams/
+2 GIVN Pugsley
+2 SURN Addams
+2 _MARNM Addams
+1 SEX M
+1 BIRT
+2 DATE 12 JUN 1985
+1 FAMC @F1@
+0 @I5@ INDI
+1 NAME Pubert /Addams/
+2 GIVN Pubert
+2 SURN Addams
+2 _MARNM Addams
+1 SEX M
+1 BIRT
+2 DATE 8 OCT 1993
+1 FAMC @F1@
+0 @I6@ INDI
+1 NAME Father /Frump/
+2 GIVN Father
+2 SURN Frump
+2 _MARNM Frump
+1 SEX M
+1 FAMS @F2@
+0 @I7@ INDI
+1 NAME Hester /Frump/
+2 GIVN Hester
+2 SURN Frump
+2 _MARNM Frump
+1 SEX F
+1 FAMS @F2@
+1 FAMC @F5@
+0 @I8@ INDI
+1 NAME Ophelia /Frump/
+2 GIVN Ophelia
+2 SURN Frump
+2 _MARNM Frump
+1 SEX F
+1 BIRT
+2 DATE 12 MAR 1963
+1 FAMC @F2@
+0 @I9@ INDI
+1 NAME Candy /Kane/
+2 GIVN Candy
+2 SURN Kane
+2 _MARNM Kane
+1 SEX F
+1 BIRT
+2 DATE 15 DEC 1961
+1 DEAT Y
+2 DATE 11 JUN 1983
+1 FAMS @F3@
+0 @I10@ INDI
+1 NAME Sugar /Addams/
+2 GIVN Sugar
+2 SURN Addams
+2 _MARNM Addams
+1 SEX F
+1 BIRT
+2 DATE 17 AUG 1982
+1 FAMC @F3@
+0 @I11@ INDI
+1 NAME Father /Addams/
+2 GIVN Father
+2 SURN Addams
+2 _MARNM Addams
+1 SEX M
+1 FAMS @F4@
+0 @I12@ INDI
+1 NAME Eudora Esmeralda /Frump/
+2 GIVN Eudora Esmeralda
+2 SURN Frump
+2 _MARNM Addams
+1 SEX F
+1 FAMS @F4@
+0 @I13@ INDI
+1 NAME Fester /Addams/
+2 GIVN Fester
+2 SURN Addams
+2 _MARNM Addams
+1 SEX M
+1 FAMS @F6@
+1 FAMC @F4@
+0 @I14@ INDI
+1 NAME Debbie /Jelinski/
+2 GIVN Debbie
+2 SURN Jelinski
+2 _MARNM Jelinski
+1 SEX F
+1 FAMS @F6@
+0 @I15@ INDI
+1 NAME Clump /Addams/
+2 GIVN Clump
+2 SURN Addams
+2 _MARNM Addams
+1 SEX M
+1 FAMS @F7@
+1 FAMC @F4@
+0 @I16@ INDI
+1 NAME Aphasia /Du Berry/
+2 GIVN Aphasia
+2 SURN Du Berry
+2 _MARNM Addams
+1 SEX F
+1 FAMS @F7@
+0 @I17@ INDI
+1 NAME Creep /Addams/
+2 GIVN Creep
+2 SURN Addams
+2 _MARNM Addams
+1 SEX M
+1 FAMC @F7@
+0 @I18@ INDI
+1 NAME Blob /Addams/
+2 GIVN Blob
+2 SURN Addams
+2 _MARNM Addams
+1 SEX M
+1 FAMC @F7@
+0 @I19@ INDI
+1 NAME Bleak /Frump/
+2 GIVN Bleak
+2 SURN Frump
+2 _MARNM Frump
+1 SEX M
+1 FAMS @F5@
+0 @I20@ INDI
+1 NAME Griselda /Frump/
+2 GIVN Griselda
+2 SURN Frump
+2 _MARNM Frump
+1 SEX F
+1 FAMS @F5@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I1@
+1 CHIL @I3@
+1 CHIL @I4@
+1 CHIL @I5@
+1 MARR
+2 DATE 6 JUL 1984
+2 PLAC Cemetery Lane
+1 _CURRENT Y
+0 @F3@ FAM
+1 HUSB @I2@
+1 WIFE @I9@
+1 CHIL @I10@
+1 MARR
+2 DATE 5 APR 1980
+2 PLAC Christmas Town
+1 EVEN
+2 TYPE Ending
+1 _CURRENT N
+0 @F2@ FAM
+1 HUSB @I6@
+1 WIFE @I7@
+1 CHIL @I1@
+1 CHIL @I8@
+1 _CURRENT Y
+0 @F4@ FAM
+1 HUSB @I11@
+1 WIFE @I12@
+1 CHIL @I2@
+1 CHIL @I13@
+1 CHIL @I15@
+1 _CURRENT Y
+0 @F5@ FAM
+1 HUSB @I19@
+1 WIFE @I20@
+1 CHIL @I7@
+1 _CURRENT Y
+0 @F6@ FAM
+1 HUSB @I13@
+1 WIFE @I14@
+1 _CURRENT Y
+0 @F7@ FAM
+1 HUSB @I15@
+1 WIFE @I16@
+1 CHIL @I17@
+1 CHIL @I18@
+1 _CURRENT Y
+0 TRLR
