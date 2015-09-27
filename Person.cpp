@@ -30,6 +30,7 @@ public:
 	void printInformation()
 	{
 		cout << "NAME: " << Person_Name << endl; 
+		cout << "ID: " << Person_UID << endl;
 		cout << "Person Number: " << ID_Number << endl; 
 	}
 };

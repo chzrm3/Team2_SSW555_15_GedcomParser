@@ -109,6 +109,7 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 	string tag = "";
 
 	bool buildPerson = false;
+	bool buildFamily = false;
 	while (!ifile.eof())
 	{
 		getline(ifile, sLine);
@@ -131,6 +132,10 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 					buildPerson = false;
 				}
 			}
+			else if (buildFamily)
+			{
+
+			}
 			else
 			{
 				if (tag == "INDI")
@@ -139,6 +144,10 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 					person_counter++;
 					buildPerson = true;
 					list_of_people[person_counter].Person_UID = getUniqueID(sLine);
+				}
+				else if (tag == "FAM")
+				{
+
 				}
 			}
 			//See if tag is valid
