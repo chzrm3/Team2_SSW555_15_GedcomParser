@@ -21,8 +21,8 @@ int main()
 	cout << "Enter the GEDCOM file to parse:\n>";
 	getline(cin, gedcomFile);
 
-	gedcomFile = "C:\\Users\\The Russo's\\Documents\\GitHub\\Team2_SSW555_15_GedcomParser\\PickensSSW555P01.ged";
-	string outputFile = "C:\\Users\\The Russo's\\Documents\\GitHub\\Team2_SSW555_15_GedcomParser\\PickensP02Output.txt";
+	gedcomFile = "PickensSSW555P01.ged";
+	string outputFile = "PickensP02Output.txt";
 	
 	bool filePassed = false;
 	int person_count = 0; 

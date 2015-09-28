@@ -11,9 +11,9 @@ using namespace std;
 
 const int VALID_TAGS_SIZE = 17;
 
-int person_counter = 0;
+int person_counter = -1;
 Person* list_of_people = new Person[5000]; 
-int family_counter = 0;
+int family_counter = -1;
 int child_counter = 0;
 Family* list_of_families = new Family[1000];
 
@@ -42,6 +42,36 @@ string getLevel(string const & gedcomLine)
 		Level = gedcomLine.substr(0, found);
 
 	return Level;
+}
+
+string getUniqueId(string const & gedcomLine)
+{
+	string Id = "";
+
+	size_t first = gedcomLine.find(" ");
+	if (first != std::string::npos)
+	{
+		size_t second = gedcomLine.find(" ", first + 1);
+		if (second != std::string::npos)
+			Id = gedcomLine.substr(first + 1, second - 2);
+	}
+
+	return Id;
+}
+
+string getValue(string const & gedcomLine)
+{
+	string Val = "";
+
+	size_t first = gedcomLine.find(" ");
+	if (first != std::string::npos)
+	{
+		size_t second = gedcomLine.find(" ", first + 1);
+		if (second != std::string::npos)
+			Val = gedcomLine.substr(second + 1);
+	}
+
+	return Val;
 }
 
 string getTag(string const & gedcomLine)
@@ -74,39 +104,6 @@ string getTag(string const & gedcomLine)
 		Tag = "Invalid Tag";
 	}
 
-	if (Tag == "NAME")
-	{
-		cout << "Got a name over here!" << endl; 
-		person_counter++; 
-		list_of_people[person_counter].Person_Name = gedcomLine; 
-		list_of_people[person_counter].ID_Number = person_counter; 
-		list_of_people[person_counter].testPerson(); 
-	}
-
-	if (Tag == "FAM")
-	{
-		cout << "Got a family over here!" << endl;
-		list_of_families[family_counter].ID_Number = family_counter;
-		list_of_families[family_counter].family_id = Tag;
-		family_counter++;
-	}
-	if (Tag == "HUSB")
-	{
-		cout << "Got a husband" << endl;
-		list_of_families[family_counter].husband = Tag;
-	}
-	if (Tag == "WIFE")
-	{
-		cout << "Got a wife" << endl;
-		list_of_families[family_counter].wife = Tag;
-	}
-	if (Tag == "CHIL")
-	{
-		cout << "Got a child" << endl;
-		list_of_families[family_counter].children.push_back(Tag);
-		child_counter++;
-	}
-
 	return Tag;
 }
 
@@ -126,6 +123,8 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 	string sLine = "";
 	string level = "";
 	string tag = "";
+	bool buildPerson = false;
+	bool buildFamily = false;
 
 	while (!ifile.eof())
 	{
@@ -137,10 +136,68 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 			//Get tag
 			tag = getTag(sLine);
 			//See if tag is valid
-			printAndWrite("Line: " + sLine, ofile);
-			printAndWrite("Level: " + level, ofile);
-			printAndWrite("Tag: " + tag, ofile);
-			printAndWrite("", ofile);
+			if (buildPerson)
+			{
+				if (tag == "NAME")
+				{
+					cout << "Got a name over here!" << endl;
+					person_counter++;
+					list_of_people[person_counter].Person_Name = getValue(sLine);
+					list_of_people[person_counter].ID_Number = person_counter;
+				}
+				else
+				{
+					buildPerson = false;
+					list_of_people[person_counter].testPerson();
+				}
+				
+
+			}
+			else if (buildFamily)
+			{
+				if (tag == "HUSB")
+				{
+					cout << "Got a husband" << endl;
+					list_of_families[family_counter].husband = getValue(sLine);
+				}
+				else if (tag == "WIFE")
+				{
+					cout << "Got a wife" << endl;
+					list_of_families[family_counter].wife = getValue(sLine);
+				}
+				else if (tag == "CHIL")
+				{
+					cout << "Got a child" << endl;
+					list_of_families[family_counter].children.push_back(getValue(sLine));
+					child_counter++;
+				}
+				else
+				{
+					buildFamily = false;
+					list_of_families[family_counter].printInformation();
+				}
+
+			}
+			else
+			{
+				if (tag == "INDI")
+				{
+					cout << "Got a person over here!" << endl;
+					person_counter++;
+					list_of_people[person_counter].ID_Number = family_counter;
+					list_of_people[person_counter].Person_UID = getUniqueId(sLine);
+					buildPerson = true;
+				}
+				else if (tag == "FAM")
+				{
+					cout << "Got a family over here!" << endl;
+					family_counter++;
+					list_of_families[family_counter].ID_Number = family_counter;
+					list_of_families[family_counter].family_id = getUniqueId(sLine);
+					buildFamily = true;
+				}
+			}
+			
 		}
 	}
 
