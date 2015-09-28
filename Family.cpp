@@ -24,6 +24,6 @@ public:
 		cout << "FAMILY: " << family_id << endl;
 		cout << "Husband: " << husband << endl;
 		cout << "Wife: " << wife << endl;
-		for (int i = 0; i < children.size() - 1; i++) cout << "Child" << i << ": " << children[i] << endl;
+		for (int i = 0; i < children.size(); i++) cout << "Child" << i << ": " << children[i] << endl;
 	}
 };
