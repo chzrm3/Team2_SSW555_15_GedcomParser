@@ -16,7 +16,7 @@ public:
 	
 	Family()
 	{
-
+		
 	}
 
 	void printInformation()
@@ -24,6 +24,7 @@ public:
 		cout << "FAMILY: " << family_id << endl;
 		cout << "Husband: " << husband << endl;
 		cout << "Wife: " << wife << endl;
-		for (int i = 0; i < children.size(); i++) cout << "Child" << i << ": " << children[i] << endl;
+		if (children.size() > 0)
+			for (int i = 0; i < children.size(); i++) cout << "Child" << i << ": " << children[i] << endl;
 	}
 };
