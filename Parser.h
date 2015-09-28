@@ -8,6 +8,8 @@ void parseGedcomFile(std::string const & gedcomFile, std::string const & outputF
 std::string getLevel(std::string const & gedcomLine);
 std::string getTag(std::string const & gedcomLine);
 int getPersonCounter(); 
-void printPeople(); 
+int getFamilyCounter();
+void printPeople();
+void printFamilies();
 
 #endif

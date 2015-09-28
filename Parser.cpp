@@ -2,8 +2,10 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 #include "Parser.h"
 #include "Person.cpp" 
+#include "Family.cpp"
 
 using namespace std;
 
@@ -11,7 +13,9 @@ const int VALID_TAGS_SIZE = 17;
 
 int person_counter = 0;
 Person* list_of_people = new Person[5000]; 
-
+int family_counter = 0;
+int child_counter = 0;
+Family* list_of_families = new Family[1000];
 
 string valid_tags[VALID_TAGS_SIZE] =
 { "INDI", "NAME", "SEX", "BIRT", "DEAT", "FAMC", 
@@ -38,24 +42,6 @@ string getLevel(string const & gedcomLine)
 		Level = gedcomLine.substr(0, found);
 
 	return Level;
-}
-
-string getUniqueID(string const & gedcomLine)
-{
-	string UniqueID = "";
-
-	size_t first = gedcomLine.find(" ");
-	if (first != std::string::npos)
-	{
-		size_t second = gedcomLine.find(" ", first + 1);
-		if (second != std::string::npos)
-		{
-			UniqueID = gedcomLine.substr(first + 1, second - 2);
-		}
-		UniqueID = gedcomLine.substr(first, second);
-	}
-
-	return UniqueID;
 }
 
 string getTag(string const & gedcomLine)
@@ -88,6 +74,39 @@ string getTag(string const & gedcomLine)
 		Tag = "Invalid Tag";
 	}
 
+	if (Tag == "NAME")
+	{
+		cout << "Got a name over here!" << endl; 
+		person_counter++; 
+		list_of_people[person_counter].Person_Name = gedcomLine; 
+		list_of_people[person_counter].ID_Number = person_counter; 
+		list_of_people[person_counter].testPerson(); 
+	}
+
+	if (Tag == "FAM")
+	{
+		cout << "Got a family over here!" << endl;
+		list_of_families[family_counter].ID_Number = family_counter;
+		list_of_families[family_counter].family_id = Tag;
+		family_counter++;
+	}
+	if (Tag == "HUSB")
+	{
+		cout << "Got a husband" << endl;
+		list_of_families[family_counter].husband = Tag;
+	}
+	if (Tag == "WIFE")
+	{
+		cout << "Got a wife" << endl;
+		list_of_families[family_counter].wife = Tag;
+	}
+	if (Tag == "CHIL")
+	{
+		cout << "Got a child" << endl;
+		list_of_families[family_counter].children[child_counter] = Tag;
+		child_counter++;
+	}
+
 	return Tag;
 }
 
@@ -108,58 +127,26 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 	string level = "";
 	string tag = "";
 
-	bool buildPerson = false;
-	bool buildFamily = false;
 	while (!ifile.eof())
 	{
 		getline(ifile, sLine);
-
 		if (sLine != "")
 		{
 			//Get level
 			level = getLevel(sLine);
 			//Get tag
 			tag = getTag(sLine);
-			if (buildPerson)
-			{
-				if (tag == "NAME")
-				{
-					list_of_people[person_counter].Person_Name = sLine;
-					list_of_people[person_counter].testPerson();
-				}
-				else
-				{
-					buildPerson = false;
-				}
-			}
-			else if (buildFamily)
-			{
-
-			}
-			else
-			{
-				if (tag == "INDI")
-				{
-					cout << "Got a person over here!" << endl;
-					person_counter++;
-					buildPerson = true;
-					list_of_people[person_counter].Person_UID = getUniqueID(sLine);
-				}
-				else if (tag == "FAM")
-				{
-
-				}
-			}
 			//See if tag is valid
-			//printAndWrite("Line: " + sLine, ofile);
-			//printAndWrite("Level: " + level, ofile);
-			//printAndWrite("Tag: " + tag, ofile);
-			//printAndWrite("", ofile);
+			printAndWrite("Line: " + sLine, ofile);
+			printAndWrite("Level: " + level, ofile);
+			printAndWrite("Tag: " + tag, ofile);
+			printAndWrite("", ofile);
 		}
 	}
 
 	ifile.close();
 	ofile.close();
+
 }
 
 int getPersonCounter()
@@ -167,10 +154,24 @@ int getPersonCounter()
 	return person_counter; 
 }
 
+int getFamilyCounter()
+{
+	return family_counter;
+}
+
+
 void printPeople()
 {
 	for (int x = 0; x < person_counter; x++)
 	{
 		list_of_people[x].printInformation(); 
+	}
+}
+
+void printFamilies()
+{
+	for (int x = 0; x < family_counter; x++)
+	{
+		list_of_families[x].printInformation();
 	}
 }

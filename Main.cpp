@@ -21,12 +21,12 @@ int main()
 	cout << "Enter the GEDCOM file to parse:\n>";
 	getline(cin, gedcomFile);
 
-	//gedcomFile = "C:\\Users\\Chzrm\\Desktop\\My-Family-13-Sep-2015.ged";
-	gedcomFile = "C:\\Users\\Laura\\Documents\\Stevens\\SSW555\\Week 1\\PickensSSW555P01.ged";
-	string outputFile = "C:\\Users\\Laura\\Documents\\Stevens\\SSW555\\Week 3\\Team2P03Output.txt";
+	gedcomFile = "C:\\Users\\The Russo's\\Documents\\GitHub\\Team2_SSW555_15_GedcomParser\\PickensSSW555P01.ged";
+	string outputFile = "C:\\Users\\The Russo's\\Documents\\GitHub\\Team2_SSW555_15_GedcomParser\\PickensP02Output.txt";
 	
 	bool filePassed = false;
 	int person_count = 0; 
+	int family_count = 0;
 	
 
 	if (isGedcomFile(gedcomFile))
@@ -38,11 +38,16 @@ int main()
 	system("PAUSE");
 
 	person_count = getPersonCounter(); 
+	family_count = getFamilyCounter();
 	
 	cout << "Number of People: " << person_count << endl; 
 
 	printPeople(); 
 
-	system("PAUSE"); 
+	cout << "Number of Families: " << family_count << endl;
+
+	printFamilies();
+
+	system("PAUSE");
 	return 0;
 }
