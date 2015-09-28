@@ -103,7 +103,7 @@ string getTag(string const & gedcomLine)
 	if (Tag == "CHIL")
 	{
 		cout << "Got a child" << endl;
-		list_of_families[family_counter].children[child_counter] = Tag;
+		list_of_families[family_counter].children.push_back(Tag);
 		child_counter++;
 	}
 
