@@ -141,7 +141,6 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 				if (tag == "NAME")
 				{
 					cout << "Got a name over here!" << endl;
-					person_counter++;
 					list_of_people[person_counter].Person_Name = getValue(sLine);
 					list_of_people[person_counter].ID_Number = person_counter;
 				}
@@ -150,8 +149,6 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 					buildPerson = false;
 					list_of_people[person_counter].testPerson();
 				}
-				
-
 			}
 			else if (buildFamily)
 			{
@@ -184,7 +181,7 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 				{
 					cout << "Got a person over here!" << endl;
 					person_counter++;
-					list_of_people[person_counter].ID_Number = family_counter;
+					list_of_people[person_counter].ID_Number = person_counter;
 					list_of_people[person_counter].Person_UID = getUniqueId(sLine);
 					buildPerson = true;
 				}
