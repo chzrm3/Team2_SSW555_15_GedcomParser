@@ -147,7 +147,6 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 				else
 				{
 					buildPerson = false;
-					list_of_people[person_counter].testPerson();
 				}
 			}
 			else if (buildFamily)
@@ -171,7 +170,6 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 				else
 				{
 					buildFamily = false;
-					list_of_families[family_counter].printInformation();
 				}
 
 			}
@@ -200,6 +198,9 @@ void parseGedcomFile(string const & gedcomFile, string const & outputFile)
 
 	ifile.close();
 	ofile.close();
+
+	printPeople();
+	printFamilies();
 
 }
 
