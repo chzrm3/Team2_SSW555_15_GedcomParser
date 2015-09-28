@@ -71,16 +71,6 @@ string getValue(string const & gedcomLine)
 			Val = gedcomLine.substr(second + 1);
 	}
 
-	char remove_slashes[] = "//";
-
-	for (int x = 0; x < strlen(remove_slashes); x++)
-	{
-		Val.erase(std::remove(Val.begin(), Val.end(), remove_slashes[x]), Val.end());
-	}
-
-		
-	
-
 	return Val;
 }
 
